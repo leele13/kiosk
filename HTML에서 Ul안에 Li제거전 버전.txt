@@ -1,0 +1,22 @@
+<div class="product-price-box">
+                            <ul>
+                                <!-- <li class="first-box">
+                                    <div class="img-product-title">
+                                        <div class="img-box">
+                                            <img src="./images/Ferrero_Rocher_logo.png" alt="선택한 제품 이미지">
+                                        </div>
+                                        <h3 class="product-title"></h3>
+                                        <span class="product-del-btn">X</span>
+                                    </div>
+                                    <div class="btn-price">
+                                        <div class="btn-box">
+                                            <button class="decrease">-</button>
+                                            <input class="price-value" type="text" value="0">
+                                            <button class="increase">+</button>
+                                        </div>
+                                        <p class="price">0</p>
+                                    </div>
+                                </li> -->
+                            </ul>
+
+HTML구조 수정 전 버전, 백업용 

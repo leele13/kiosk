@@ -124,14 +124,13 @@ h2 {
 
 #shopping-basket > .shopping-list-pay-box > .product-price-box li > .img-product-title > .img-box > img { 
     height: 100%;   
-    opacity: 0.1;
 }
 
-#shopping-basket > .shopping-list-pay-box > .product-price-box li > .img-product-title #product-title {
+#shopping-basket > .shopping-list-pay-box > .product-price-box li > .img-product-title > .product-title {
     width: 170px;
 }
 
-#shopping-basket > .shopping-list-pay-box > .product-price-box li > .img-product-title > #product-del-btn {
+#shopping-basket > .shopping-list-pay-box > .product-price-box li > .img-product-title > .product-del-btn {
     width: 24px; height: 24px;
     font-size: 18px;
     text-align: center;
@@ -139,7 +138,7 @@ h2 {
     cursor: pointer;
 }
 
-#shopping-basket > .shopping-list-pay-box > .product-price-box li > .img-product-title > #product-del-btn:hover {
+#shopping-basket > .shopping-list-pay-box > .product-price-box li > .img-product-title > .product-del-btn:hover {
     color: #4f1200;
     background-color: #ccc;
 }
@@ -237,3 +236,52 @@ h2 {
     cursor: pointer;
 }
 
+/* == modal == */
+.modal {
+    /* display: none;  */
+    position: fixed;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    z-index: 10;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    width: 80%; 
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #4f1200;
+    max-width: 500px;
+    background-color: #fefefe;
+}
+
+.modal-content > h2 {
+    font-size: 36px;
+    margin: 50px 0;
+}
+
+.modal-content > p {
+    margin: 10px 0;
+}
+
+.modal-content > #confirm-payment {
+    align-self: flex-end;  
+    width: 50px; height: 40px;
+    color: #FFF;
+    border: none;
+    background: none;
+    background-color: #4f1200;
+    cursor: pointer;
+}
+
+.modal-content > #confirm-payment:hover {
+    font-weight: bold;
+    color: #4f1200;
+    border: 1px solid #4f1200;
+    background-color: #d3c3a7;
+}

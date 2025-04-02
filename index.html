@@ -143,29 +143,12 @@
                     <div class="shopping-list-pay-box">
                         <div class="product-price-box">
                             <ul>
-                                <li class="first-box">
-                                    <div class="img-product-title">
-                                        <div class="img-box">
-                                            <img src="./images/Ferrero_Rocher_logo.png" alt="선택한 제품 이미지">
-                                        </div>
-                                        <h3 id="product-title"></h3>
-                                        <span id="product-del-btn">X</span>
-                                    </div>
-                                    <div class="btn-price">
-                                        <div class="btn-box">
-                                            <button id="decrease">-</button>
-                                            <input id="price-value" type="text" value="0">
-                                            <button id="increase">+</button>
-                                        </div>
-                                        <p id="price">0</p>
-                                    </div>
-                                </li>
                             </ul>
 
                             <div class="payment-box">
                                 <div class="charging-txt-box">
                                     <label for="charging-amount">충전금액</label>
-                                    <input type="text" name="charging-amount" readonly value="0">
+                                    <input type="text" name="charging-amount" id="charging-amount" readonly value="0">
                                 </div>
                                 <div class="coin">
                                     <button id="item1" title="백원" onclick="add(100)">100원</button>
@@ -187,6 +170,15 @@
                         </div> <!-- product-price-box -->
                     </div> <!-- cart-list-pay-box -->
                 </div> <!-- shopping-basket -->
+
+                <div id="payment-modal" class="modal">
+                    <div class="modal-content">
+                        <h2>결제 완료</h2>
+                        <p id="modal-charging-amount">충전금액: </p>
+                        <p id="modal-total-payment">최종금액: </p>
+                        <button id="confirm-payment">확인</button>
+                    </div>
+                </div>
             </div> <!-- products -->
         </section>
     </main>

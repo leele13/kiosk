@@ -1,0 +1,87 @@
+// 총 결제 금액을 업데이트하는 함수
+function updateTotalPayment() {
+    let totalPayment = 0;
+
+    // 모든 가격 요소를 찾아서 합산
+    document.querySelectorAll('.btn-price p').forEach(priceElement => {
+        let priceValue = parseInt(priceElement.innerText.replace(/,/g, '').replace('원', ''));
+        totalPayment += priceValue;
+    });
+
+    // 총 결제 금액을 입력 필드에 업데이트
+    document.getElementById('result').value = totalPayment.toLocaleString() + '원';
+}
+
+// 각 버튼의 클릭 이벤트에 총 결제 금액 업데이트 함수 추가
+secondIncreaseBtn.addEventListener('click', () => {
+    secondQuantityInput.value = parseInt(secondQuantityInput.value) + 1;
+
+    let chocolatePriceElement = getChocolatePrice(); // 선택된 li의 가격 가져오기
+    let totalPrice = chocolatePriceElement * secondQuantityInput.value;
+    secondPriceDisplay.textContent = totalPrice.toLocaleString() + '원'; // 가격을 원화 형식으로 표시
+
+    updateTotalPayment(); // 총 결제 금액 업데이트
+});
+
+secondDecreaseBtn.addEventListener('click', () => {
+    let currentQuantity = parseInt(secondQuantityInput.value);
+    if (currentQuantity > 0) {
+        secondQuantityInput.value = currentQuantity - 1;
+
+        let chocolatePriceElement = getChocolatePrice(); // 선택된 li의 가격 가져오기
+        let totalPrice = chocolatePriceElement * secondQuantityInput.value;
+        secondPriceDisplay.textContent = totalPrice.toLocaleString() + '원'; // 가격을 원화 형식으로 표시
+
+        updateTotalPayment(); // 총 결제 금액 업데이트
+    }
+});
+
+increaseBtn.addEventListener('click', () => {
+    quantityInput.value = parseInt(quantityInput.value) + 1;
+
+    let chocolatePriceElement = getChocolatePrice(); // 선택된 li의 가격 가져오기
+    let totalPrice = chocolatePriceElement * quantityInput.value;
+    priceDisplay.textContent = totalPrice.toLocaleString() + '원'; // 가격을 원화 형식으로 표시
+
+    updateTotalPayment(); // 총 결제 금액 업데이트
+});
+
+decreaseBtn.addEventListener('click', () => {
+    let firstBoxQuantity = parseInt(quantityInput.value);
+    if (firstBoxQuantity > 0) {
+        quantityInput.value = firstBoxQuantity - 1;
+
+        let chocolatePriceElement = getChocolatePrice(); // 선택된 li의 가격 가져오기
+        let totalPrice = chocolatePriceElement * quantityInput.value;
+        priceDisplay.textContent = totalPrice.toLocaleString() + '원'; // 가격을 원화 형식으로 표시
+
+        updateTotalPayment(); // 총 결제 금액 업데이트
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+===================
+
+
+
+
+
+
+
+// 총 결제 금액에서가격을 빼는 함수
+    function updateTotalPaymentAfterRemoval(priceValue) {
+    let totalPaymentField = document.getElementById('result');
+    let currentTotal = parseInt(totalPaymentField.value.replace(/,/g, '').replace('원', '')); // 현재 총 결제 금액 가져오기
+    let newTotal = currentTotal - priceValue; // 새로운 총 결제 금액 계산
+    totalPaymentField.value = newTotal.toLocaleString() + '원'; // 업데이트된 금액 표시
+    }
