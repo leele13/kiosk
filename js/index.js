@@ -8,6 +8,13 @@ function add(data) {
 
     // 새로운 금액을 문자열로 변환하여 설정
     chargingInput.value = newAmount.toLocaleString(); // 천 단위 구분 기호 추가
+
+    // 모달에 충전금액 업데이트
+    const modalChargingAmount = document.getElementById("modal-charging-amount");
+    modalChargingAmount.innerText = `충전금액: ${newAmount.toLocaleString()}원`; // 모달 업데이트
+
+    // 잔여금액 업데이트
+    updateRemainingAmount();
 };
 
 window.onload = function() {
@@ -23,8 +30,35 @@ window.onload = function() {
         });
 
         // 총 결제 금액을 입력 필드에 업데이트
-        document.getElementById('result').value = totalPayment.toLocaleString() + '원 결제하기';
-    }
+        const resultButton = document.getElementById('result');
+        resultButton.value = totalPayment.toLocaleString() + '원 결제하기';
+
+        // 모달에 최종금액 업데이트
+        const modalTotalPayment = document.getElementById('modal-total-payment');
+        modalTotalPayment.innerText = `최종금액: ${totalPayment.toLocaleString()}원`; // 모달 업데이트
+
+        updateRemainingAmount();
+    };
+
+    // 잔여금액 업데이트 함수
+    function updateRemainingAmount() {
+        const chargingInput = document.getElementsByName("charging-amount")[0];
+        const currentAmount = parseInt(chargingInput.value.replace(/,/g, '')); // 충전금액
+
+        const totalPayment = parseInt(document.querySelector('#modal-total-payment').innerText.replace(/[^\d]/g, '')); // 최종금액 (숫자만 추출)
+
+        const remainingAmount = currentAmount - totalPayment; // 잔여금액 계산
+
+        const modalRemainingAmount = document.getElementById("modal-remaining-amount");
+
+        if (remainingAmount < 0 || currentAmount < totalPayment) {
+            // 잔액이 부족하면 메시지 출력
+            modalRemainingAmount.innerText = "잔액이 부족합니다.";
+        } else {
+            // 잔여금액을 표시
+            modalRemainingAmount.innerText = `잔여금액: ${remainingAmount.toLocaleString()}원`;
+        }
+    };
 
     // 초콜릿 선택 시 처리
     function selectChocolate(chocolateLi) {
@@ -147,53 +181,19 @@ window.onload = function() {
 };
 
 // 모달 이벤트  // 수정할게 많다~~
-const resultButton = document.getElementById("result-button"); // 리절트 버튼
-const modal = document.getElementById("payment-modal"); // 모달 창
-const confirmPaymentBtn = document.getElementById("confirm-payment"); // 확인 버튼
-const modalChargingAmount = document.getElementById("modal-charging-amount"); // 모달 충전금액
-const modalTotalPayment = document.getElementById("modal-total-payment"); // 모달 최종금액
+document.addEventListener('DOMContentLoaded', function() {
+    const resultButton = document.getElementById("result"); 
+    const modal = document.getElementById("payment-modal"); // 모달 창
+    const confirmPaymentBtn = document.getElementById("confirm-payment"); // 확인 버튼
 
-// 충전금액 및 최종금액
-let chargingAmount = 0; // 충전금액
-let totalPayment = 0; // 최종금액
+    // #result 클릭 시 모달 보이기
+    resultButton.addEventListener('click', function() {
+        // 모달 보이기
+        modal.style.display = 'block';
+    });
 
-// 예시로 충전금액을 설정하는 함수 (실제 값은 동적으로 계산)
-function setChargingAmount(amount) {
-    chargingAmount += amount; // 충전금액 증가
-    document.getElementById("charging-amount").value = chargingAmount; // 충전금액 업데이트
-};
-
-// 예시로 최종금액을 계산하는 함수
-function setTotalPayment(amount) {
-    totalPayment += amount; // 최종금액 증가
-    document.getElementById("result").value = totalPayment; // 최종금액 업데이트
-};
-
-// 리절트 버튼 클릭 시 모달 띄우기
-resultButton.addEventListener("click", function () {
-    const remainingAmount = chargingAmount - totalPayment;
-
-    // 충전금액과 최종금액 계산
-    modalChargingAmount.innerText = `충전금액: ${chargingAmount} 원`;
-    modalTotalPayment.innerText = `최종금액: ${totalPayment} 원`;
-
-    // 모달 띄우기
-    modal.style.display = "block";
+    confirmPaymentBtn.addEventListener('click', function() {
+        // 모달 보이기
+        modal.style.display = 'none';
+    });
 });
-
-// 모달 확인 버튼 클릭 시
-confirmPaymentBtn.addEventListener("click", function () {
-    completePayment(); // 결제 완료 처리
-});
-
-// 결제 완료 처리 함수
-function completePayment() {
-    // 결제 확인 후 처리 (예: 결제 완료 알림, 서버 전송 등)
-    alert("결제가 완료되었습니다.");
-    closeModal(); // 모달 숨기기
-};
-
-// 모달 닫기 함수
-function closeModal() {
-    modal.style.display = "none"; // 모달 숨기기
-};
