@@ -207,6 +207,11 @@ h2 {
     cursor: pointer;
 }
 
+#shopping-basket > .shopping-list-pay-box > .product-price-box > .payment-box > .coin > button:hover,
+#shopping-basket > .shopping-list-pay-box > .product-price-box > .payment-box > .bill > button:hover {
+    transform: scale(1.1);
+}
+
 #shopping-basket > .shopping-list-pay-box > .product-price-box > .payment-box > .bill > button {
     padding: 5px;
     border: none;
@@ -282,6 +287,11 @@ h2 {
 
 .modal-content > p {
     margin: 5px 0;
+}
+
+.modal-content > p#modal-remaining-amount {
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
 }
 
 .modal-content > #confirm-payment {
